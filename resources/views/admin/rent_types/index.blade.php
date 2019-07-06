@@ -7,21 +7,21 @@
     <li class="breadcrumb-item">
         <a href="#">Dashboard</a>
     </li>
-    <li class="breadcrumb-item active">House Type</li>
+    <li class="breadcrumb-item active">Rent Type</li>
 </ol>
 
 <div class="row">
     <div class="col-md-5">
         <div class="card mx-auto">
-            <div class="card-header">Add House Type</div>
+            <div class="card-header">Add Rent Type</div>
             <div class="card-body">
-                <form action="{{ route('admin.house-type.store') }}" method="post">
+                <form action="{{ route('admin.rent-type.store') }}" method="post">
                     @csrf @method('post')
                     <div class="form-group">
                         <div class="form-label-group">
                             <input type="text" name="name" id="name" class="form-control"
-                                placeholder="House Type" value="{{ old('name') }}">
-                            <label for="name">House Type</label>
+                                placeholder="Rent Type" value="{{ old('name') }}">
+                            <label for="name">Rent Type</label>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary float-right">Submit</button>
@@ -29,10 +29,10 @@
             </div>
         </div>
     </div>
-    @if (count($houseTypes))
+    @if (count($rentTypes))
     <div class="col-md-7">
         <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> House Types</div>
+            <div class="card-header"><i class="fas fa-table"></i> Rent Types</div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -51,21 +51,21 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @if ($houseTypes)
-                            @foreach ($houseTypes as $key => $houseType)
+                            @if ($rentTypes)
+                            @foreach ($rentTypes as $key => $rentType)
                             <tr>
                                 <th scope="row">{{ ++$key }}</th>
-                                <td>{{ $houseType->name }}</td>
+                                <td>{{ $rentType->name }}</td>
                                 <td>
-                                    @include('includes.house_type_edit',[
-                                    'action' => route('admin.house-type.update', $houseType->id),
-                                    'id' => $houseType->id,
-                                    'houseType' => $houseType->name,
+                                    @include('includes.rent_type_edit',[
+                                    'action' => route('admin.rent-type.update', $rentType->id),
+                                    'id' => $rentType->id,
+                                    'rentType' => $rentType->name,
                                     ])
 
                                     @include('includes._confirm_delete',[
-                                    'action' => route('admin.house-type.destroy', $houseType->id),
-                                    'id' => $houseType->id
+                                    'action' => route('admin.rent-type.destroy', $rentType->id),
+                                    'id' => $rentType->id
                                     ])
                                 </td>
                             </tr>

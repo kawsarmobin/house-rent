@@ -32,4 +32,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('/user.personal-info', 'Admin\UserPersonalInfoControllers', ['as' => 'admin']);
     /* House type */
     Route::resource('/house-type', 'Admin\HouseTypesController', ['as' => 'admin'])->except(['create', 'show']);
+    /* Rent type */
+    Route::resource('/rent-type', 'Admin\RentTypesController', ['as' => 'admin'])->except(['create', 'show']);
 });
