@@ -30,4 +30,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/user-permissions/verified/{user}', 'Admin\UserController@verified')->name('user.permissions.verified');
     /* User personal info */
     Route::resource('/user.personal-info', 'Admin\UserPersonalInfoControllers', ['as' => 'admin']);
+    /* House type */
+    Route::resource('/house-type', 'Admin\HouseTypesController', ['as' => 'admin'])->except(['create', 'show']);
 });
