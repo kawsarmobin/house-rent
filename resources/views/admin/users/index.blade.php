@@ -51,6 +51,7 @@
               <span class="badge badge-secondary">{{ $user->user_status }}</span> | <span class="badge badge-secondary">{{ $user->admin_or_not }}</span> | <span class="badge badge-secondary">{{ $user->verified }}</span>
             </td>
             <td>
+              <!-- user permission -->
               @if (auth()->user()->id !== $user->id)
               <a href="{{ route('user.permissions.status', $user->id) }}" class="badge {{ $user->status ? 'badge-danger' : 'badge-success' }}">
                   {{ $user->status ? 'Deactive' : 'Active' }}</a> |
@@ -62,15 +63,17 @@
               <span class="text-danger">Unauthorized</span>
               @endif 
               <hr>
-              <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-outline-info">
+              <!-- user edit -->
+              <a href="{{ route('admin.users.edit', $user->id) }}" class="badge badge-primary">
                 <i class="fa fa-edit"></i>
               </a> |
+              <!-- user view all data -->
+              <a href="{{ route('admin.user.personal-info.index', $user->id) }}" class="badge badge-info"><i class="fa fa-eye"></i></a> |
+              <!-- user destroy -->
               @include('includes._confirm_delete',[
                 'action' => route('admin.users.destroy', $user->id),
                 'id' => $user->id
-              ]) | 
-              <a href="{{ route('admin.user.personal-info.create', $user->id) }}" class="badge badge-secondary">Add your personal info</a> |
-              <a href="{{ route('admin.user.personal-info.index', $user->id) }}" class="badge badge-info">View info</a>
+              ])
             </td>
           </tr>
           @endforeach

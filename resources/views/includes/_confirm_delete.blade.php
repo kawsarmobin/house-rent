@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteConfirm-{{ $id }}">
+<button type="button" class="badge badge-danger" data-toggle="modal" data-target="#deleteConfirm-{{ $id }}">
     <i class="fa fa-trash"></i>
 </button>
 <!-- Modal -->

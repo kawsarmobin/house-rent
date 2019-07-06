@@ -63,7 +63,7 @@
                                     @if ($upis)
                                     @foreach ($upis as $upi)
                                     <img class="img-thumbnail" src="{{ $upi->identity_proof ? $upi->identity_proof : '' }}" alt="{{ $upi->identity_proof ? $upi->identity_proof : 'No data available' }}">
-                                    <p>{{ $upi->identity_scan ? $upi->identity_scan : '' }}</p>
+                                    <p>Identity proof type: {{ $upi->identity_scan ? $upi->identity_scan : '' }}</p>
                                     @endforeach
                                 @endif
                             </div>
