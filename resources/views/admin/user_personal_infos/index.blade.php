@@ -39,7 +39,7 @@
                         <span class="badge badge-secondary">{{ $user->admin_or_not }}</span> | 
                         <span class="badge badge-secondary">{{ $user->verified }}</span>
                         <hr>
-                        <p class="text-center"><strong>User role:</strong> {{ $user->user_role->type_of_user }}</p>
+                        <p class="text-center"><strong>User role:</strong> {{ $user->user_role_type }}</p>
                     </div>
                 </div>
             </div>

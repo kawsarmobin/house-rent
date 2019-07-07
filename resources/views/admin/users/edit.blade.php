@@ -23,9 +23,9 @@
                 <div class="form-label-group">
                     <select class="form-control select" name="user_role">
                         <option value="">Select User Role</option>
-                            @if ($userRoles)
-                                @foreach ($userRoles as $userRole)
-                                    <option {{ $user->user_role_id == $userRole->id ? 'selected' : '' }} value="{{ $userRole->id }}">{{ $userRole->type_of_user }}</option>
+                            @if ($user_roles)
+                                @foreach ($user_roles as $key => $user_role)
+                                    <option {{ $user->user_role == $key ? 'selected' : '' }} value="{{ $key }}">{{ $user_role }}</option>
                                 @endforeach
                             @endif
                     </select>

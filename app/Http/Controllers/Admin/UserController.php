@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
-use App\Models\UserRole;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -19,13 +18,12 @@ class UserController extends Controller
     public function create()
     {
         return view('admin.users.create')
-            ->with('userRoles', UserRole::orderBy('type_of_user')->get());
+            ->with('user_roles', User::USER_ROLE);
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'user_role_id' => 'required',
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
@@ -42,13 +40,12 @@ class UserController extends Controller
     {
         return view('admin.users.edit')
             ->with('user', $user)
-            ->with('userRoles', UserRole::orderBy('type_of_user')->get());
+            ->with('user_roles', User::USER_ROLE);
     }
 
     public function update(Request $request, User $user)
     {
         $this->validate($request, [
-            'user_role' => 'required',
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$user->id,
             'user_type' => 'required',

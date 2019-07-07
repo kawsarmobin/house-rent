@@ -22,8 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     /* Users */
     Route::resource('/users', 'Admin\UserController', ['as' => 'admin']);
-    /* User role */
-    Route::resource('/user-role', 'Admin\UserRolesController', ['as' => 'admin']);
     /* permissions */
     Route::get('/user-permissions/admin-or-not/{user}', 'Admin\UserController@adminOrNot')->name('user.permissions.admin-or-not');
     Route::get('/user-permissions/status/{user}', 'Admin\UserController@status')->name('user.permissions.status');
@@ -34,4 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('/house-type', 'Admin\HouseTypesController', ['as' => 'admin'])->except(['create', 'show']);
     /* Rent type */
     Route::resource('/rent-type', 'Admin\RentTypesController', ['as' => 'admin'])->except(['create', 'show']);
+    /* House Info */
+    Route::resource('/house-info', 'Admin\HouseInfosController', ['as' => 'admin']);
+    Route::get('/house-info/{house_info}/approval', 'Admin\HouseInfosController@approval')->name('admin.house-info.approval');
 });

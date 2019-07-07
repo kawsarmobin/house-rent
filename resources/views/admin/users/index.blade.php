@@ -46,7 +46,7 @@
             <th scope="row">{{ ++$key }}</th>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
-            <td>{{ $user->user_role ? $user->user_role->type_of_user : 'Null' }}</td>
+            <td>{{ $user->user_role_type }}</td>
             <td>
               <span class="badge badge-secondary">{{ $user->user_status }}</span> | <span class="badge badge-secondary">{{ $user->admin_or_not }}</span> | <span class="badge badge-secondary">{{ $user->verified }}</span>
             </td>

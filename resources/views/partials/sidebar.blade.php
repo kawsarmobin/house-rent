@@ -1,26 +1,26 @@
 <ul class="sidebar navbar-nav">
-    <li class="nav-item active">
+    <li class="nav-item  {{ Request::is('home') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.user-role.index') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>User Role</span></a>
-    </li>
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('admin/users*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.users.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Users</span></a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('admin/house-type*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.house-type.index') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>House Type</span></a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('admin/house-info*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.house-info.index') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>House Info</span></a>
+    </li>
+    <li class="nav-item {{ Request::is('admin/rent-type*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.rent-type.index') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Rent Type</span></a>

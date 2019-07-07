@@ -16,7 +16,6 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12345678'),
-            'user_role_id' => 1,
             'status' => true,
             'is_admin' => 1,
             'is_verified' => true,
@@ -26,10 +25,20 @@ class UsersTableSeeder extends Seeder
             'name' => 'Kawsar Mobin Rubel',
             'email' => 'kawsar@gmail.com',
             'password' => bcrypt('12345678'),
-            'user_role_id' => 2,
-            'status' => false,
+            'user_role' => 1,
+            'status' => true,
             'is_admin' => false,
-            'is_verified' => false,
+            'is_verified' => true,
+        ]);
+
+        User::create([
+            'name' => 'Ab Siddik',
+            'email' => 'siddik@gmail.com',
+            'password' => bcrypt('12345678'),
+            'user_role' => 2,
+            'status' => true,
+            'is_admin' => false,
+            'is_verified' => true,
         ]);
     }
 }
