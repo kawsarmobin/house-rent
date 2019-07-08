@@ -35,8 +35,13 @@ class HouseInfo extends Model
         return $this->belongsTo(HouseType::class);
     }
 
+    public function houseDetails()
+    {
+        return $this->hasOne(HouseDetails::class, 'house_id', 'id');
+    }
+
     public function getApprovalAttribute()
     {
-        return array_search($this->approved,self::IS_APPROVED);
+        return array_search($this->approved, self::IS_APPROVED);
     }
 }

@@ -55,8 +55,11 @@
                             <a href="{{ route('admin.house-info.approval', $houseInfo->id) }}" class="badge badge-warning">{{ $houseInfo->approved ? 'Unapproval' : 'Approved' }}</a>
                         </td>
                         <td>
+                            <!-- edit -->
                             <a href="{{ route('admin.house-info.edit', $houseInfo->id) }}" class="badge badge-info"><i class="fa fa-edit"></i></a>
-
+                            <!-- show -->
+                            <a href="{{ route('admin.house-info.show', $houseInfo->id) }}" class="badge badge-secondary"><i class="fa fa-eye"></i></a>
+                            <!-- destroy -->
                             @include('includes._confirm_delete',[
                             'action' => route('admin.house-info.destroy', $houseInfo->id),
                             'id' => $houseInfo->id

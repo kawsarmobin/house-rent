@@ -17,6 +17,8 @@
     <!-- Page level plugin CSS-->
     <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/topuhit/Font-Bangla@1.0.3/1.0.0/font-bangla.css"> 
+
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin.css') }}" rel="stylesheet">
 

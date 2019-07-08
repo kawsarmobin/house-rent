@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use App\Models\HouseInfo;
 use App\Models\HouseType;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Http\Requests\CreateHouseInfoRequest;
+use App\Http\Requests\UpdateHouseInfoRequest;
 
 class HouseInfosController extends Controller
 {
@@ -36,23 +37,18 @@ class HouseInfosController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CreateHouseInfoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateHouseInfoRequest $request)
     {
-        $this->validate($request, [
-            'landlord' => 'required',
-            'house_type' => 'required',
-            'title' => 'required',
-            'house_address' => 'required',
-        ]);
-
         $request['user_id'] = $request->landlord;
         $request['house_type_id'] = $request->house_type;
         $request['house_token'] = str_random(60);
 
-        HouseInfo::create($request->all());
+        $houseInfo = HouseInfo::create($request->all());
+
+        $houseInfo->houseDetails()->create($request->all());
 
         return back();
     }
@@ -65,7 +61,8 @@ class HouseInfosController extends Controller
      */
     public function show(HouseInfo $houseInfo)
     {
-        //
+        return view('admin.house_infos.show')
+            ->with('houseInfo',$houseInfo);
     }
 
     /**
@@ -85,24 +82,19 @@ class HouseInfosController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\UpdateHouseInfoRequest  $request
      * @param  \App\Models\HouseInfo  $houseInfo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HouseInfo $houseInfo)
+    public function update(UpdateHouseInfoRequest $request, HouseInfo $houseInfo)
     {
-        $this->validate($request, [
-            'landlord' => 'required',
-            'house_type' => 'required',
-            'title' => 'required',
-            'house_address' => 'required',
-        ]);
-
         $request['user_id'] = $request->landlord;
         $request['house_type_id'] = $request->house_type;
         $request['house_token'] = str_random(60);
 
         $houseInfo->update($request->all());
+
+        $houseInfo->houseDetails()->update($request->all());
 
         return redirect()->route('admin.house-info.index');
     }
