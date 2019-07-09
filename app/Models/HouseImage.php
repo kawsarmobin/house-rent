@@ -12,4 +12,9 @@ class HouseImage extends Model
     {
         return $this->belongsTo(HouseInfo::class, 'id', 'house_id');
     }
+
+    public function getImageAttribute($value)
+    {
+        return asset('uploads/house_images/'.$value);
+    }
 }

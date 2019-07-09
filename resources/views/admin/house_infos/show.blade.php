@@ -22,6 +22,7 @@
     <div class="card-body">
 
         <div class="row">
+            <!-- house information -->
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -57,6 +58,7 @@
                     </div>
                 </div>
             </div>
+            <!-- house details -->
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -103,34 +105,23 @@
                 </div>
             </div>
 
+            <!-- showing image -->
             <div class="col-md-12 mt-3">
                 <div class="card">
                     <div class="card-body text-center">
                         <div class="form-row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <div class="form-label-group">
-                                        <img src="https://www.w3schools.com/bootstrap4/img_chania.jpg"
-                                            class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+                            @if ($houseInfo->houseImages)
+                                @foreach ($houseInfo->houseImages as $item)
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="form-label-group">
+                                            <img src="{{ $item->image }}" class="img-thumbnail" alt="Cinque Terre"
+                                                width="304" height="236">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <div class="form-label-group">
-                                        <img src="https://www.w3schools.com/bootstrap/cinqueterre.jpg"
-                                            class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <div class="form-label-group">
-                                        <img src="https://www.w3schools.com/bootstrap/paris.jpg" class="img-thumbnail"
-                                            alt="Cinque Terre" width="304" height="236">
-                                    </div>
-                                </div>
-                            </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
