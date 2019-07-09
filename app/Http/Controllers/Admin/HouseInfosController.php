@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateHouseInfoRequest;
 use App\Http\Requests\UpdateHouseInfoRequest;
 use App\Models\HouseDetails;
+use Illuminate\Http\Request;
+use App\Models\HouseImage;
 
 class HouseInfosController extends Controller
 {
@@ -41,7 +43,7 @@ class HouseInfosController extends Controller
      * @param  \Illuminate\Http\CreateHouseInfoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateHouseInfoRequest $request)
+    public function store(Request $request)
     {
         $request['user_id'] = $request->landlord;
         $request['house_type_id'] = $request->house_type;
@@ -50,6 +52,21 @@ class HouseInfosController extends Controller
         $houseInfo = HouseInfo::create($request->all());
 
         $houseInfo->houseDetails()->create($request->all());
+
+        /* Multiple image upload */
+        $i = 0;
+
+        if ($request->hasfile('images')) {
+            foreach ($request->file('images') as $image) {
+                $name = time().'-'.$image->getClientOriginalName();
+                $image->move(public_path() . '/uploads/house_images/', $name);
+                $data[$i]['house_id'] = $houseInfo->id;
+                $data[$i]['image'] = $name;
+                $i++;
+            }
+        }
+
+        HouseImage::insert($data);
 
         return back();
     }
@@ -63,7 +80,7 @@ class HouseInfosController extends Controller
     public function show(HouseInfo $houseInfo)
     {
         return view('admin.house_infos.show')
-            ->with('houseInfo',$houseInfo);
+            ->with('houseInfo', $houseInfo);
     }
 
     /**

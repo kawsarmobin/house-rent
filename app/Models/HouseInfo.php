@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class HouseInfo extends Model
 {
@@ -38,6 +38,11 @@ class HouseInfo extends Model
     public function houseDetails()
     {
         return $this->hasOne(HouseDetails::class, 'house_id', 'id');
+    }
+
+    public function houseImages()
+    {
+        return $this->hasMany(HouseImage::class, 'house_id', 'id');
     }
 
     public function getApprovalAttribute()

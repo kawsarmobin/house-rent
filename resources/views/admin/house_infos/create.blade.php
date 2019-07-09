@@ -17,7 +17,7 @@
         </a>
     </div>
     <div class="card-body">
-        <form action="{{ route('admin.house-info.store') }}" method="post">
+        <form action="{{ route('admin.house-info.store') }}" method="post" enctype="multipart/form-data">
             @csrf @method('post')
 
             <div class="form-row">
@@ -27,9 +27,9 @@
                             <select class="form-control select" name="landlord">
                                 <option value="">Select Landlord</option>
                                 @if ($landlords)
-                                    @foreach ($landlords as $landlord)
-                                        <option value="{{ $landlord->id }}">{{ $landlord->name }}</option>
-                                    @endforeach
+                                @foreach ($landlords as $landlord)
+                                <option value="{{ $landlord->id }}">{{ $landlord->name }}</option>
+                                @endforeach
                                 @endif
                             </select>
                         </div>
@@ -41,9 +41,9 @@
                             <select class="form-control select" name="house_type">
                                 <option value="">Select House Type</option>
                                 @if ($housetypes)
-                                    @foreach ($housetypes as $housetype)
-                                        <option value="{{ $housetype->id }}">{{ $housetype->name }}</option>
-                                    @endforeach
+                                @foreach ($housetypes as $housetype)
+                                <option value="{{ $housetype->id }}">{{ $housetype->name }}</option>
+                                @endforeach
                                 @endif
                             </select>
                         </div>
@@ -136,12 +136,24 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="form-label-group">
-                    <input type="number" name="rent_amount" id="rent_amount" class="form-control"
-                        placeholder="No of rent amount" value="{{ old('rent_amount') }}" min="500">
-                    <label for="rent_amount" class="col col-form-label"><i class="fb-taka"></i> Rent
-                        amount</label>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input type="file" name="images[]" multiple id="image">
+                            <label for="image" class="col col-form-label">Image</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input type="number" name="rent_amount" id="rent_amount" class="form-control"
+                                placeholder="No of rent amount" value="{{ old('rent_amount') }}" min="500">
+                            <label for="rent_amount" class="col col-form-label"><i class="fb-taka"></i> Rent
+                                amount</label>
+                        </div>
+                    </div>
                 </div>
             </div>
 

@@ -15,6 +15,9 @@
         <a href="{{ route('admin.house-info.index') }}" class="btn btn-sm btn-outline-primary float-right">
             <i class="fa fa-backspace"></i> Back
         </a>
+        <a href="{{ route('admin.house-info.create') }}" class="btn btn-sm btn-outline-primary float-right mr-1">
+            <i class="fa fa-plus"></i> Add New
+        </a>
     </div>
     <div class="card-body">
 
@@ -99,9 +102,43 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-12 mt-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <img src="https://www.w3schools.com/bootstrap4/img_chania.jpg"
+                                            class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <img src="https://www.w3schools.com/bootstrap/cinqueterre.jpg"
+                                            class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <img src="https://www.w3schools.com/bootstrap/paris.jpg" class="img-thumbnail"
+                                            alt="Cinque Terre" width="304" height="236">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <a href="{{ route('admin.house-info.edit', $houseInfo->id) }}" class="btn btn-sm btn-primary float-right">Update
+        <a href="{{ route('admin.house-info.edit', $houseInfo->id) }}"
+            class="btn btn-sm btn-primary float-right mt-3">Update
             all information</a>
     </div>
 </div>
