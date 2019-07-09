@@ -56,12 +56,53 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-body"></div>
+                    <div class="card-body">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <th>bed_room</th>
+                                    <td>:</td>
+                                    <td>{{ $houseInfo->houseDetails->bed_room }}</td>
+                                </tr>
+                                <tr>
+                                    <th>wash_room</th>
+                                    <td>:</td>
+                                    <td>{{ $houseInfo->houseDetails->wash_room }}</td>
+                                </tr>
+                                <tr>
+                                    <th>porches</th>
+                                    <td>:</td>
+                                    <td>{{ $houseInfo->houseDetails->porches }}</td>
+                                </tr>
+                                <tr>
+                                    <th>drawing_room</th>
+                                    <td>:</td>
+                                    <td>{{ $houseInfo->houseDetails->drawing_room }}</td>
+                                </tr>
+                                <tr>
+                                    <th>dining_room</th>
+                                    <td>:</td>
+                                    <td>{{ $houseInfo->houseDetails->dining_room }}</td>
+                                </tr>
+                                <tr>
+                                    <th>store_room</th>
+                                    <td>:</td>
+                                    <td>{{ $houseInfo->houseDetails->store_room }}</td>
+                                </tr>
+                                <tr>
+                                    <th>rent_amount</th>
+                                    <td>:</td>
+                                    <td><i class="fb-taka"></i> {{ $houseInfo->houseDetails->rent_amount }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <a href="{{ route('admin.house-info.edit', $houseInfo->id) }}" class="btn btn-sm btn-primary float-right">Update all information</a>
+        <a href="{{ route('admin.house-info.edit', $houseInfo->id) }}" class="btn btn-sm btn-primary float-right">Update
+            all information</a>
     </div>
 </div>
 @endsection

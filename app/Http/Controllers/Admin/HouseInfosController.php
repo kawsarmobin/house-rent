@@ -8,6 +8,7 @@ use App\Models\HouseType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateHouseInfoRequest;
 use App\Http\Requests\UpdateHouseInfoRequest;
+use App\Models\HouseDetails;
 
 class HouseInfosController extends Controller
 {
@@ -94,7 +95,8 @@ class HouseInfosController extends Controller
 
         $houseInfo->update($request->all());
 
-        $houseInfo->houseDetails()->update($request->all());
+        $house_details = HouseDetails::where('house_id', $houseInfo->id)->first();
+        $house_details->update($request->all());
 
         return redirect()->route('admin.house-info.index');
     }
