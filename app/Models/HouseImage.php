@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class HouseImage extends Model
 {
+    const UPLOAD_PATH = '/uploads/house_images';
+    const THUMB_UPLOAD_PATH = '/uploads/house_images/thumbnail';
+
     protected $fillable = ['house_id', 'image',];
 
     public function houseInfo()
@@ -13,8 +16,13 @@ class HouseImage extends Model
         return $this->belongsTo(HouseInfo::class, 'id', 'house_id');
     }
 
-    public function getImageAttribute($value)
+    public function getImageUrlAttribute()
     {
-        return asset('uploads/house_images/'.$value);
+        return asset(self::THUMB_UPLOAD_PATH.'/'.$this->image);
+    }
+
+    public function getThumbAttribute()
+    {
+        return asset(self::THUMB_UPLOAD_PATH.'/'.$this->image);
     }
 }

@@ -111,12 +111,11 @@
                     <div class="card-body text-center">
                         <div class="form-row">
                             @if ($houseInfo->houseImages)
-                                @foreach ($houseInfo->houseImages as $item)
+                                @foreach ($houseInfo->houseImages as $image)
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="form-label-group">
-                                            <img src="{{ $item->image }}" class="img-thumbnail" alt="Cinque Terre"
-                                                width="304" height="236">
+                                            <img src="{{ $image->thumb }}" class="img-thumbnail" alt="{{ $image->image }}">
                                         </div>
                                     </div>
                                 </div>

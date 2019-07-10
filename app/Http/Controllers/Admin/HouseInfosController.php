@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use File;
 use App\User;
 use App\Models\HouseInfo;
 use App\Models\HouseType;
+use App\Models\HouseImage;
+use App\Models\HouseDetails;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateHouseInfoRequest;
 use App\Http\Requests\UpdateHouseInfoRequest;
-use App\Models\HouseDetails;
-use Illuminate\Http\Request;
-use App\Models\HouseImage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class HouseInfosController extends Controller
 {
@@ -43,7 +45,7 @@ class HouseInfosController extends Controller
      * @param  \Illuminate\Http\CreateHouseInfoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateHouseInfoRequest $request)
     {
         $request['user_id'] = $request->landlord;
         $request['house_type_id'] = $request->house_type;
@@ -56,11 +58,23 @@ class HouseInfosController extends Controller
         /* Multiple image upload */
         $i = 0;
 
-        if ($request->hasfile('images')) {
+        if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $name = time().'-'.$image->getClientOriginalName();
-                $image->move(public_path() . '/uploads/house_images/', $name);
-                $data[$i]['house_id'] = $houseInfo->id;
+                $name = time() . '-' . $image->getClientOriginalName();
+
+                $image->move(public_path() . HouseImage::UPLOAD_PATH .'/', $name);
+
+                $image_path = public_path(HouseImage::UPLOAD_PATH .'/'. $name);
+                $path = public_path(HouseImage::THUMB_UPLOAD_PATH);
+
+                if (!is_dir($path)) {
+                    File::makeDirectory($path, $mode = 0777, true, true);
+                }
+
+                $image_resize = Image::make($image_path);
+                $image_resize->resize(320, 240)->save(public_path(HouseImage::THUMB_UPLOAD_PATH .'/'. $name));
+
+                $data[$i]['house_id'] = 1;
                 $data[$i]['image'] = $name;
                 $i++;
             }
