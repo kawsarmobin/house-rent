@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Session;
 use App\Models\HouseType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,7 +33,8 @@ class HouseTypesController extends Controller
         ]);
 
         HouseType::create($request->all());
-
+        
+        Session::flash('success', 'House type added successfully');
         return back();
     }
 
@@ -75,6 +77,7 @@ class HouseTypesController extends Controller
     public function destroy(HouseType $houseType)
     {
         $houseType->delete();
+        Session::flash('success', 'House type deleted successfully');
         return back();
     }
 }

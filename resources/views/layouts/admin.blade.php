@@ -17,10 +17,11 @@
     <!-- Page level plugin CSS-->
     <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/topuhit/Font-Bangla@1.0.3/1.0.0/font-bangla.css"> 
-
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
     <link href="{{ asset('admin/css/sb-admin.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/gh/topuhit/Font-Bangla@1.0.3/1.0.0/font-bangla.css">
 
 </head>
 
@@ -106,6 +107,43 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('admin/js/sb-admin.min.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script>
+        @if (Session::has('success'))
+            toastr.success("{{ Session::get('success') }}")
+        @endif
+
+        @if (Session::has('info'))
+            toastr.info("{{ Session::get('info') }}")
+        @endif
+
+        @if (Session::has('warning'))
+            toastr.warning("{{ Session::get('warning') }}")
+        @endif
+
+        @if (Session::has('error'))
+            toastr.error("{{ Session::get('error') }}")
+        @endif
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+            }
+    </script>
+
 
     <!-- Demo scripts for this page-->
     <script src="{{ asset('admin/js/demo/datatables-demo.js') }}"></script>
