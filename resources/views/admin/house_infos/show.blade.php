@@ -111,25 +111,29 @@
                     <div class="card-body text-center">
                         <div class="form-row">
                             @if ($houseInfo->houseImages)
-                                @foreach ($houseInfo->houseImages as $image)
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-label-group">
-                                            <img src="{{ $image->thumb }}" class="img-thumbnail" alt="{{ $image->image }}">
-                                        </div>
+                            @foreach ($houseInfo->houseImages as $image)
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <img src="{{ $image->thumb }}" class="img-thumbnail zoom"
+                                            alt="{{ $image->image }}">
                                     </div>
                                 </div>
-                                @endforeach
+                            </div>
+                            @endforeach
                             @endif
                         </div>
+                        <a href="{{ route('admin.house.image.create', $houseInfo->id) }}"
+                            class="btn btn-sm btn-outline-primary">Add more image</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <a href="{{ route('admin.house-info.edit', $houseInfo->id) }}"
-            class="btn btn-sm btn-primary float-right mt-3">Update
-            all information</a>
+        <a class="btn btn-sm btn-outline-primary float-right mt-3"
+            href="{{ route('admin.house-info.edit', $houseInfo->id) }}"> Update all information
+        </a>
     </div>
 </div>
+
 @endsection

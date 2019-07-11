@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use File;
 use App\User;
 use App\Models\HouseInfo;
 use App\Models\HouseType;
 use App\Models\HouseImage;
 use App\Models\HouseDetails;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Traits\MultipleImageUploadTraits;
 use App\Http\Requests\CreateHouseInfoRequest;
 use App\Http\Requests\UpdateHouseInfoRequest;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class HouseInfosController extends Controller
 {
+    use MultipleImageUploadTraits;
+
     /**
      * Display a listing of the resource.
      *
@@ -56,32 +56,9 @@ class HouseInfosController extends Controller
         $houseInfo->houseDetails()->create($request->all());
 
         /* Multiple image upload */
-        $i = 0;
-
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $name = time() . '-' . $image->getClientOriginalName();
-
-                $image->move(public_path() . HouseImage::UPLOAD_PATH .'/', $name);
-
-                $image_path = public_path(HouseImage::UPLOAD_PATH .'/'. $name);
-                $path = public_path(HouseImage::THUMB_UPLOAD_PATH);
-
-                if (!is_dir($path)) {
-                    File::makeDirectory($path, $mode = 0777, true, true);
-                }
-
-                $image_resize = Image::make($image_path);
-                $image_resize->resize(320, 240)->save(public_path(HouseImage::THUMB_UPLOAD_PATH .'/'. $name));
-
-                $data[$i]['house_id'] = 1;
-                $data[$i]['image'] = $name;
-                $i++;
-            }
-        }
-
+        $data = $this->imagesUpload($houseInfo);
         HouseImage::insert($data);
-
+        
         return back();
     }
 
