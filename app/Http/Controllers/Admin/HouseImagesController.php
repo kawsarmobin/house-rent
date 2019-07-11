@@ -87,8 +87,12 @@ class HouseImagesController extends Controller
      * @param  \App\Models\HouseImage  $houseImage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HouseImage $houseImage)
+    public function destroy(HouseInfo $house, HouseImage $image)
     {
-        //
+        $image->delete();
+        unlink(public_path(HouseImage::UPLOAD_PATH.'/'.$image->image));
+        unlink(public_path(HouseImage::THUMB_UPLOAD_PATH.'/'.$image->image));
+
+        return back();
     }
 }

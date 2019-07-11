@@ -117,12 +117,18 @@
                                     <div class="form-label-group">
                                         <img src="{{ $image->thumb }}" class="img-thumbnail zoom"
                                             alt="{{ $image->image }}">
+                                        <!-- delete one by one image -->
+                                        @include('includes._confirm_delete',[
+                                        'action' => route('admin.house.image.destroy', [$houseInfo->id, $image->id]),
+                                        'id' => $image->id
+                                        ])
                                     </div>
                                 </div>
                             </div>
                             @endforeach
                             @endif
                         </div>
+                        <!-- add more image -->
                         <a href="{{ route('admin.house.image.create', $houseInfo->id) }}"
                             class="btn btn-sm btn-outline-primary">Add more image</a>
                     </div>

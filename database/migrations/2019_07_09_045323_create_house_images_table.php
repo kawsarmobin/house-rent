@@ -17,6 +17,7 @@ class CreateHouseImagesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('house_id');
             $table->string('image');
+            
             $table->foreign('house_id')->references('id')->on('house_infos')->onDelete('cascade');
             $table->timestamps();
         });

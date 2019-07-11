@@ -16,13 +16,16 @@ class CreateHouseInfosTable extends Migration
     {
         Schema::create('house_infos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
-            $table->bigInteger('house_type_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('house_type_id');
             $table->string('title');
             $table->string('house_address');
             $table->string('house_token');
             $table->boolean('status')->default(HouseInfo::STATUS['Deactive']);
             $table->boolean('approved')->default(HouseInfo::IS_APPROVED['Unapproved']);
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('house_type_id')->references('id')->on('house_types')->onDelete('cascade');
             $table->timestamps();
         });
     }

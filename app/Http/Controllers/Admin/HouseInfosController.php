@@ -117,7 +117,14 @@ class HouseInfosController extends Controller
      */
     public function destroy(HouseInfo $houseInfo)
     {
-        $houseInfo->delete();
+        $house_images = $houseInfo->houseImages;
+
+        if ($houseInfo->delete()) {
+            foreach ($house_images as $image) {
+                unlink(public_path(HouseImage::UPLOAD_PATH.'/'.$image->image));
+                unlink(public_path(HouseImage::THUMB_UPLOAD_PATH.'/'.$image->image));
+            }
+        }
         return back();
     }
 
