@@ -37,4 +37,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/house-info/{house_info}/approval', 'Admin\HouseInfosController@approval')->name('admin.house-info.approval');
     /* House Image */
     Route::resource('house.image', 'Admin\HouseImagesController', ['as' => 'admin'])->only(['create', 'store', 'destroy']);
+    /* Customer type */
+    Route::resource('/customer-type', 'Admin\CustomerTypesController', ['as' => 'admin'])->except(['create', 'show']);
 });

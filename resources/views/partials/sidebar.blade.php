@@ -25,6 +25,11 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Rent Type</span></a>
     </li>
+    <li class="nav-item {{ Request::is('admin/customer-type*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.customer-type.index') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Customer Type</span></a>
+    </li>
 
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
