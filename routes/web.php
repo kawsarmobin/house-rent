@@ -38,5 +38,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     /* House Image */
     Route::resource('house.image', 'Admin\HouseImagesController', ['as' => 'admin'])->only(['create', 'store', 'destroy']);
     /* Customer type */
-    Route::resource('/customer-type', 'Admin\CustomerTypesController', ['as' => 'admin'])->except(['create', 'show']);
+    Route::resource('/customer-type', 'Admin\CustomerTypesController', ['as' => 'admin'])->except(['create', 'show', 'edit']);
+    /* Location */
+    Route::resource('/country', 'Admin\Location\CountriesController', ['as' => 'admin'])->except(['create', 'show', 'edit']);
+    Route::resource('/division', 'Admin\Location\DivisionsController', ['as' => 'admin'])->except(['create', 'show', 'edit']);
+    Route::resource('/police-station', 'Admin\Location\PoliceStationsController', ['as' => 'admin'])->except(['create', 'show', 'edit']);
+    Route::resource('/city', 'Admin\Location\CitiesController', ['as' => 'admin'])->except(['create', 'show', 'edit']);
+    Route::resource('/village', 'Admin\Location\VillagesController', ['as' => 'admin'])->except(['create', 'show', 'edit']);
+    Route::resource('/word', 'Admin\Location\WordsController', ['as' => 'admin'])->except(['create', 'show', 'edit']);
 });

@@ -30,7 +30,23 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Customer Type</span></a>
     </li>
+    <li class="nav-item dropdown {{ Request::is('admin/country*') ? 'active' : '' }}">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Location</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item {{ Request::is('admin/country*') ? 'active' : '' }}" href="{{ route('admin.country.index') }}">Country</a>
+            <a class="dropdown-item {{ Request::is('admin/division*') ? 'active' : '' }}" href="{{ route('admin.division.index') }}">Division</a>
+            <a class="dropdown-item" href="{{ route('admin.police-station.index') }}">Police Staion / Upazila</a>
+            <a class="dropdown-item" href="{{ route('admin.city.index') }}">District / City</a>
+            <a class="dropdown-item" href="{{ route('admin.village.index') }}">Village / Moholla</a>
+            <a class="dropdown-item" href="{{ route('admin.word.index') }}">Word / Union</a>
+        </div>
+    </li>
 
+    {{-- default --}}
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">

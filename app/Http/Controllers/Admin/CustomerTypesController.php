@@ -38,18 +38,6 @@ class CustomerTypesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CustomerType  $customerType
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CustomerType $customerType)
-    {
-        return view('admin.customer_types.edit')
-            ->with('customer_type', $customerType);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
