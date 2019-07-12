@@ -26,11 +26,11 @@
                         <div class="form-label-group">
                             <select class="form-control select" name="landlord">
                                 <option value="">Select Landlord</option>
-                                @if ($landlords)
-                                @foreach ($landlords as $landlord)
-                                <option value="{{ $landlord->id }}">{{ $landlord->name }}</option>
-                                @endforeach
-                                @endif
+                                    @if ($landlords)
+                                        @foreach ($landlords as $landlord)
+                                            <option value="{{ $landlord->id }}">{{ $landlord->name }}</option>
+                                        @endforeach
+                                    @endif
                             </select>
                         </div>
                     </div>

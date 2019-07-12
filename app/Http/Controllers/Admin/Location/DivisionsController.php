@@ -42,6 +42,8 @@ class DivisionsController extends Controller
             'division' => 'required'
         ]);
 
+        $request['country_id'] = $request->country;
+
         Division::create($request->all());
         Session::flash('success', 'Division create successfully');
         return back();
@@ -60,6 +62,8 @@ class DivisionsController extends Controller
             'country' => 'required',
             'division' => 'required'
         ]);
+
+        $request['country_id'] = $request->country;
 
         $division->update($request->all());
         Session::flash('success', 'Division update successfully');
