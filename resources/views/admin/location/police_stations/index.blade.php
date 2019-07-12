@@ -7,15 +7,15 @@
     <li class="breadcrumb-item">
         <a href="#">Dashboard</a>
     </li>
-    <li class="breadcrumb-item active">Division</li>
+    <li class="breadcrumb-item active">Police Staion</li>
 </ol>
 
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-4">
         <div class="card mx-auto">
-            <div class="card-header">Add Division</div>
+            <div class="card-header">Add Police Staion</div>
             <div class="card-body">
-                <form action="{{ route('admin.division.store') }}" method="post">
+                <form action="{{ route('admin.police-station.store') }}" method="post">
                     @csrf @method('post')
                     <div class="form-group">
                         <div class="form-label-group">
@@ -31,9 +31,21 @@
                     </div>
                     <div class="form-group">
                         <div class="form-label-group">
-                            <input type="text" name="division" id="division" class="form-control"
-                                placeholder="Division" value="{{ old('division') }}">
-                            <label for="division">Division</label>
+                            <select class="form-control select" name="division">
+                                <option value="">Select Division</option>
+                                    @if ($divisions)
+                                        @foreach ($divisions as $division)
+                                            <option value="{{ $division->id }}">{{ $division->division }}</option>
+                                        @endforeach
+                                    @endif
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input type="text" name="police_station" id="police_station" class="form-control"
+                                placeholder="Police Station" value="{{ old('police_station') }}">
+                            <label for="police_station">Police Station</label>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-sm btn-outline-primary float-right">Submit</button>
@@ -41,8 +53,8 @@
             </div>
         </div>
     </div>
-    @if (count($divisions))
-    <div class="col-md-7">
+    @if (count($police_stations))
+    <div class="col-md-8">
         <div class="card mb-3">
             <div class="card-header"><i class="fas fa-table"></i> All Division</div>
             <div class="card-body">
@@ -53,6 +65,7 @@
                                 <th>#</th>
                                 <th>Country</th>
                                 <th>Division</th>
+                                <th>Police Station</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -61,27 +74,30 @@
                                 <th>#</th>
                                 <th>Country</th>
                                 <th>Division</th>
+                                <th>Police Station</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @if ($divisions)
-                            @foreach ($divisions as $key => $division)
+                            @if ($police_stations)
+                            @foreach ($police_stations as $key => $police_station)
                             <tr>
                                 <th scope="row">{{ ++$key }}</th>
-                                <td>{{ $division->country->country }}</td>
-                                <td>{{ $division->division }}</td>
+                                <td>{{ $police_station->country->country }}</td>
+                                <td>{{ $police_station->division->division }}</td>
+                                <td>{{ $police_station->police_station }}</td>
                                 <td>
-                                    @include('includes.location.division_edit',[
-                                    'action' => route('admin.division.update', $division->id),
-                                    'id' => $division->id,
-                                    'country_id' => $division->country_id,
-                                    'division' => $division->division,
+                                    @include('includes.location.police_station_edit',[
+                                    'action' => route('admin.police-station.update', $police_station->id),
+                                    'id' => $police_station->id,
+                                    'country_id' => $police_station->country_id,
+                                    'division_id' => $police_station->division_id,
+                                    'police_station' => $police_station->police_station,
                                     ])
 
                                     @include('includes._confirm_delete',[
-                                    'action' => route('admin.division.destroy', $division->id),
-                                    'id' => $division->id
+                                    'action' => route('admin.police-station.destroy', $police_station->id),
+                                    'id' => $police_station->id
                                     ])
                                 </td>
                             </tr>

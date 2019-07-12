@@ -26,7 +26,8 @@ class DivisionsController extends Controller
 
         return view('admin.location.divisions.index')
             ->with('countries', $country)
-            ->with('divisions', Division::orderBy('country_id')->get());
+            ->with('divisions', Division::orderBy('country_id')->get())
+            ->with('tableUpdate', Division::orderBy('updated_at', 'desc')->first()->updated_at);
     }
 
     /**

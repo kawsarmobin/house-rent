@@ -12,4 +12,9 @@ class Country extends Model
     {
         return $this->hasMany(Division::class);
     }
+
+    public function policeStations()
+    {
+        return $this->hasMany(PoliceStation::class);
+    }
 }

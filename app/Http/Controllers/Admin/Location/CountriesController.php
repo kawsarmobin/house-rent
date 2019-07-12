@@ -17,7 +17,8 @@ class CountriesController extends Controller
     public function index()
     {
         return view('admin.location.countries.index')
-            ->with('countries', Country::orderBy('country')->get());
+            ->with('countries', Country::orderBy('country')->get())
+            ->with('tableUpdate', Country::orderBy('updated_at', 'desc')->first()->updated_at);
     }
 
     /**

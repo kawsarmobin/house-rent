@@ -12,4 +12,9 @@ class Division extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function policeStations()
+    {
+        return $this->hasMany(PoliceStation::class);
+    }
 }

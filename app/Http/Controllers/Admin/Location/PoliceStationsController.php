@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Location;
 
 use Session;
 use Illuminate\Http\Request;
+use App\Models\Location\Country;
+use App\Models\Location\Division;
 use App\Http\Controllers\Controller;
 use App\Models\Location\PoliceStation;
 
@@ -16,17 +18,19 @@ class PoliceStationsController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $country = Country::orderBy('country')->get();
+        $division = Division::orderBy('division')->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        if ($division->count() == 0) {
+            Session::flash('info', 'You must have add division before attempting to create a police station.');
+            return redirect()->back();
+        }
+
+        return view('admin.location.police_stations.index')
+            ->with('countries', $country)
+            ->with('divisions', $division)
+            ->with('police_stations', PoliceStation::orderBy('country_id')->get())
+            ->with('tableUpdate', PoliceStation::orderBy('updated_at', 'desc')->first()->updated_at);
     }
 
     /**
@@ -37,29 +41,18 @@ class PoliceStationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'country' => 'required',
+            'division' => 'required',
+            'police_station' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location\PoliceStation  $policeStation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(PoliceStation $policeStation)
-    {
-        //
-    }
+        $request['country_id'] = $request->country;
+        $request['division_id'] = $request->division;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Location\PoliceStation  $policeStation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PoliceStation $policeStation)
-    {
-        //
+        PoliceStation::create($request->all());
+        Session::flash('success', 'Police station create successfully');
+        return back();
     }
 
     /**
@@ -71,7 +64,18 @@ class PoliceStationsController extends Controller
      */
     public function update(Request $request, PoliceStation $policeStation)
     {
-        //
+        $this->validate($request, [
+            'country' => 'required',
+            'division' => 'required',
+            'police_station' => 'required',
+        ]);
+
+        $request['country_id'] = $request->country;
+        $request['division_id'] = $request->division;
+
+        $policeStation->update($request->all());
+        Session::flash('success', 'Police station update successfully');
+        return redirect()->route('admin.police-station.index');
     }
 
     /**
@@ -82,6 +86,9 @@ class PoliceStationsController extends Controller
      */
     public function destroy(PoliceStation $policeStation)
     {
-        //
+        if ($policeStation->delete()) {
+            Session::flash('success', 'Police station delete successfully');
+            return back();
+        }
     }
 }

@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class PoliceStation extends Model
 {
-    protected $fillable = ['police_station'];
+    protected $fillable = ['country_id', 'division_id','police_station'];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function division()
+    {
+        return $this->belongsTo(Division::class);
+    }
 }
