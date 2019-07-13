@@ -12,7 +12,7 @@
 
 <div class="card mb-3">
   <div class="card-header">
-    <i class="fas fa-table"></i> All User
+    <i class="fas fa-user-tie"></i> All User
     <a href="{{ route('admin.users.create') }}" class="btn btn-sm btn-outline-primary float-right"><i
         class="fa fa-plus"></i> Add New</a>
   </div>

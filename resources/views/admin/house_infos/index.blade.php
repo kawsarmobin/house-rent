@@ -12,7 +12,7 @@
 
 <div class="card mb-3">
     <div class="card-header">
-        <i class="fas fa-table"></i> House Info
+        <i class="fas fa-warehouse"></i> House Info
         <a href="{{ route('admin.house-info.create') }}" class="btn btn-sm btn-outline-primary float-right"><i
             class="fa fa-plus"></i> Add New</a>
     </div>

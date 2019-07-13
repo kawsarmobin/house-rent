@@ -32,7 +32,7 @@
     @if (count($rentTypes))
     <div class="col-md-7">
         <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> Rent Types</div>
+            <div class="card-header"><i class="fas fa-american-sign-language-interpreting"></i> Rent Types</div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
