@@ -27,4 +27,9 @@ class Division extends Model
     {
         return $this->hasMany(Village::class);
     }
+
+    public function words()
+    {
+        return $this->hasMany(Word::class);
+    }
 }

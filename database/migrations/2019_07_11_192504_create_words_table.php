@@ -15,7 +15,21 @@ class CreateWordsTable extends Migration
     {
         Schema::create('words', function (Blueprint $table) {
             $table->bigIncrements('id');
+
+            $table->unsignedBigInteger('country_id')->index();
+            $table->unsignedBigInteger('division_id')->index();
+            $table->unsignedBigInteger('city_id')->index();
+            $table->unsignedBigInteger('police_station_id')->index();
+            $table->unsignedBigInteger('village_id')->index();
+
             $table->string('word');
+
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->foreign('police_station_id')->references('id')->on('police_stations')->onDelete('cascade');
+            $table->foreign('village_id')->references('id')->on('villages')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

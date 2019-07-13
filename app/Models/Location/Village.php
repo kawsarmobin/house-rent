@@ -27,4 +27,9 @@ class Village extends Model
     {
         return $this->belongsTo(PoliceStation::class);
     }
+
+    public function words()
+    {
+        return $this->hasMany(Word::class);
+    }
 }
