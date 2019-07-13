@@ -44,6 +44,19 @@
             </div>
 
             <div class="form-group">
+                <div class="form-label-group">
+                    <select class="form-control select" name="city">
+                        <option value="">Select City</option>
+                            @if ($cities)
+                                @foreach ($cities as $city)
+                                    <option {{ $city->id == $city_id ? 'selected' : ''  }} value="{{ $city->id }}">{{ $city->city }}</option>
+                                @endforeach
+                            @endif
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
               <div class="form-label-group">
                 <input type="text" name="police_station" id="police_station" class="form-control" placeholder="Police Station"
                   value="{{ $police_station }}">

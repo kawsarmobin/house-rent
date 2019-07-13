@@ -30,7 +30,7 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Customer Type</span></a>
     </li>
-    <li class="nav-item dropdown {{ Request::is('admin/country*') ? 'active' : '' || Request::is('admin/division*') ? 'active' : '' || Request::is('admin/police-station*') ? 'active' : '' || Request::is('admin/city*') ? 'active' : '' || Request::is('admin/village*') ? 'active' : '' || Request::is('admin/word*') ? 'active' : '' }}">
+    <li class="nav-item dropdown {{ Request::is('admin/country*') ? 'active' : '' || Request::is('admin/division*') ? 'active' : '' || Request::is('admin/city*') ? 'active' : '' || Request::is('admin/police-station*') ? 'active' : '' || Request::is('admin/village*') ? 'active' : '' || Request::is('admin/word*') ? 'active' : '' }}">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>
@@ -39,8 +39,8 @@
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <a class="dropdown-item {{ Request::is('admin/country*') ? 'active' : '' }}" href="{{ route('admin.country.index') }}">Country</a>
             <a class="dropdown-item {{ Request::is('admin/division*') ? 'active' : '' }}" href="{{ route('admin.division.index') }}">Division</a>
-            <a class="dropdown-item {{ Request::is('admin/police-station*') ? 'active' : '' }}" href="{{ route('admin.police-station.index') }}">Police Staion / Upazila</a>
             <a class="dropdown-item {{ Request::is('admin/city*') ? 'active' : '' }}" href="{{ route('admin.city.index') }}">District / City</a>
+            <a class="dropdown-item {{ Request::is('admin/police-station*') ? 'active' : '' }}" href="{{ route('admin.police-station.index') }}">Police Staion / Upazila</a>
             <a class="dropdown-item {{ Request::is('admin/village*') ? 'active' : '' }}" href="{{ route('admin.village.index') }}">Village / Moholla</a>
             <a class="dropdown-item {{ Request::is('admin/word*') ? 'active' : '' }}" href="{{ route('admin.word.index') }}">Word / Union</a>
         </div>

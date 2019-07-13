@@ -43,6 +43,18 @@
                     </div>
                     <div class="form-group">
                         <div class="form-label-group">
+                            <select class="form-control select" name="city">
+                                <option value="">Select City</option>
+                                    @if ($cities)
+                                        @foreach ($cities as $city)
+                                            <option value="{{ $city->id }}">{{ $city->city }}</option>
+                                        @endforeach
+                                    @endif
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
                             <input type="text" name="police_station" id="police_station" class="form-control"
                                 placeholder="Police Station" value="{{ old('police_station') }}">
                             <label for="police_station">Police Station</label>
@@ -53,10 +65,9 @@
             </div>
         </div>
     </div>
-    @if (count($police_stations))
     <div class="col-md-8">
         <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> All Division</div>
+            <div class="card-header"><i class="fas fa-table"></i> All City</div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -65,6 +76,7 @@
                                 <th>#</th>
                                 <th>Country</th>
                                 <th>Division</th>
+                                <th>City</th>
                                 <th>Police Station</th>
                                 <th>Action</th>
                             </tr>
@@ -74,6 +86,7 @@
                                 <th>#</th>
                                 <th>Country</th>
                                 <th>Division</th>
+                                <th>City</th>
                                 <th>Police Station</th>
                                 <th>Action</th>
                             </tr>
@@ -85,6 +98,7 @@
                                 <th scope="row">{{ ++$key }}</th>
                                 <td>{{ $police_station->country->country }}</td>
                                 <td>{{ $police_station->division->division }}</td>
+                                <td>{{ $police_station->city->city }}</td>
                                 <td>{{ $police_station->police_station }}</td>
                                 <td>
                                     @include('includes.location.police_station_edit',[
@@ -92,6 +106,7 @@
                                     'id' => $police_station->id,
                                     'country_id' => $police_station->country_id,
                                     'division_id' => $police_station->division_id,
+                                    'city_id' => $police_station->city_id,
                                     'police_station' => $police_station->police_station,
                                     ])
 
@@ -110,6 +125,5 @@
             <div class="card-footer small text-muted">Updated {{ $tableUpdate->isoFormat('LLLL') }}</div>
         </div>
     </div>
-    @endif
 </div>
 @endsection

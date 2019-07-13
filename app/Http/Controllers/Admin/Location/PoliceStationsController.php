@@ -9,6 +9,7 @@ use App\Models\Location\Country;
 use App\Models\Location\Division;
 use App\Http\Controllers\Controller;
 use App\Models\Location\PoliceStation;
+use App\Models\Location\City;
 
 class PoliceStationsController extends Controller
 {
@@ -21,16 +22,18 @@ class PoliceStationsController extends Controller
     {
         $country = Country::orderBy('country')->get();
         $division = Division::orderBy('division')->get();
+        $city = City::orderBy('city')->get();
         $tableUpdate = PoliceStation::orderBy('updated_at', 'desc')->first();
 
-        if ($division->count() == 0) {
-            Session::flash('info', 'You must have add division before attempting to create a police station.');
+        if ($city->count() == 0) {
+            Session::flash('info', 'You must have add city before attempting to create a police station.');
             return redirect()->back();
         }
 
         return view('admin.location.police_stations.index')
             ->with('countries', $country)
             ->with('divisions', $division)
+            ->with('cities', $city)
             ->with('police_stations', PoliceStation::orderBy('country_id')->get())
             ->with('tableUpdate', $tableUpdate ? $tableUpdate->updated_at : Carbon::now());
     }
@@ -46,11 +49,13 @@ class PoliceStationsController extends Controller
         $this->validate($request, [
             'country' => 'required',
             'division' => 'required',
+            'city' => 'required',
             'police_station' => 'required',
         ]);
 
         $request['country_id'] = $request->country;
         $request['division_id'] = $request->division;
+        $request['city_id'] = $request->city;
 
         PoliceStation::create($request->all());
         Session::flash('success', 'Police station create successfully');
@@ -69,11 +74,13 @@ class PoliceStationsController extends Controller
         $this->validate($request, [
             'country' => 'required',
             'division' => 'required',
+            'city' => 'required',
             'police_station' => 'required',
         ]);
 
         $request['country_id'] = $request->country;
         $request['division_id'] = $request->division;
+        $request['city_id'] = $request->city;
 
         $policeStation->update($request->all());
         Session::flash('success', 'Police station update successfully');
