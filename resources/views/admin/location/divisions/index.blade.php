@@ -13,7 +13,10 @@
 <div class="row">
     <div class="col-md-5">
         <div class="card mx-auto">
-            <div class="card-header">Add Division</div>
+            <div class="card-header">Add Division
+                <a href="{{ route('admin.country.index') }}" class="btn btn-sm btn-outline-info float-right"><i
+                    class="fa fa-plus"></i> Add Country</a>
+            </div>
             <div class="card-body">
                 <form action="{{ route('admin.division.store') }}" method="post">
                     @csrf @method('post')

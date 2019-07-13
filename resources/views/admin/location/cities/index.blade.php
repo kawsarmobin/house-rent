@@ -13,7 +13,13 @@
 <div class="row">
     <div class="col-md-4">
         <div class="card mx-auto">
-            <div class="card-header">Add City</div>
+            <div class="card-header">Add City
+                <a href="{{ route('admin.division.index') }}" class="btn btn-sm btn-outline-info float-right ml-1"><i
+                    class="fa fa-plus"></i> Add Division</a>
+    
+                <a href="{{ route('admin.country.index') }}" class="btn btn-sm btn-outline-info float-right"><i
+                    class="fa fa-plus"></i> Add Country</a>
+            </div>
             <div class="card-body">
                 <form action="{{ route('admin.city.store') }}" method="post">
                     @csrf @method('post')
@@ -55,7 +61,7 @@
     </div>
     <div class="col-md-8">
         <div class="card mb-3">
-            <div class="card-header"><i class="fas fa-table"></i> All Division</div>
+            <div class="card-header"><i class="fas fa-city"></i> All City</div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

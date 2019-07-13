@@ -114,7 +114,6 @@
                             <div class="form">
                                 <input type="text" name="word" id="word" class="form-control"
                                     placeholder="Word" value="{{ old('word') }}" style="height:0;padding:18px">
-                                {{-- <label for="word">Word</label> --}}
                             </div>
                         </div>
                     </div>
