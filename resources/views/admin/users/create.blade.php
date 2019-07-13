@@ -17,7 +17,7 @@
         </a>
     </div>
     <div class="card-body">
-        <form action="{{ route('admin.users.store') }}" method="post" autocomplete="off">
+        <form action="{{ route('admin.users.store') }}" method="post" autocomplete="on">
             @csrf @method('post')
             <div class="form-group">
                 <div class="form-label-group">
@@ -41,14 +41,14 @@
             <div class="form-group">
                 <div class="form-label-group">
                     <input type="email" name="email" id="email" class="form-control" placeholder="Email Address"
-                        value="{{ old('email') }}">
+                        value="{{ old('email') }}" autocomplete="email">
                     <label for="email">Email Address</label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="form-label-group">
                     <input type="password" name="password" id="password" class="form-control" placeholder="Password"
-                        value="hr123456">
+                        value="hr123456" autocomplete="new-password">
                     <label for="password">Password</label>
                     <small style="padding-left: 1px"><strong>Default password:</strong> hr123456</small>
                 </div>
