@@ -6,6 +6,7 @@ use Session;
 use Illuminate\Http\Request;
 use App\Models\Location\Country;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
 
 class CountriesController extends Controller
 {
@@ -16,9 +17,11 @@ class CountriesController extends Controller
      */
     public function index()
     {
+        $tableUpdate = Country::orderBy('updated_at', 'desc')->first();
+
         return view('admin.location.countries.index')
             ->with('countries', Country::orderBy('country')->get())
-            ->with('tableUpdate', Country::orderBy('updated_at', 'desc')->first()->updated_at);
+            ->with('tableUpdate', $tableUpdate ? $tableUpdate->updated_at : Carbon::now());
     }
 
     /**

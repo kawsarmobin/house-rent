@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Location;
 
 use Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Models\Location\Country;
 use App\Models\Location\Division;
 use App\Http\Controllers\Controller;
@@ -20,6 +21,7 @@ class PoliceStationsController extends Controller
     {
         $country = Country::orderBy('country')->get();
         $division = Division::orderBy('division')->get();
+        $tableUpdate = PoliceStation::orderBy('updated_at', 'desc')->first();
 
         if ($division->count() == 0) {
             Session::flash('info', 'You must have add division before attempting to create a police station.');
@@ -30,7 +32,7 @@ class PoliceStationsController extends Controller
             ->with('countries', $country)
             ->with('divisions', $division)
             ->with('police_stations', PoliceStation::orderBy('country_id')->get())
-            ->with('tableUpdate', PoliceStation::orderBy('updated_at', 'desc')->first()->updated_at);
+            ->with('tableUpdate', $tableUpdate ? $tableUpdate->updated_at : Carbon::now());
     }
 
     /**

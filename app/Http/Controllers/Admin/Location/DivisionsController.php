@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin\Location;
 
 use Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Models\Location\Country;
 use App\Models\Location\Division;
 use App\Http\Controllers\Controller;
-use App\Models\Location\Country;
 
 class DivisionsController extends Controller
 {
@@ -18,6 +19,7 @@ class DivisionsController extends Controller
     public function index()
     {
         $country = Country::orderBy('country')->get();
+        $tableUpdate = Division::orderBy('updated_at', 'desc')->first();
 
         if ($country->count() == 0) {
             Session::flash('info', 'You must have add country before attempting to create a division.');
@@ -27,7 +29,7 @@ class DivisionsController extends Controller
         return view('admin.location.divisions.index')
             ->with('countries', $country)
             ->with('divisions', Division::orderBy('country_id')->get())
-            ->with('tableUpdate', Division::orderBy('updated_at', 'desc')->first()->updated_at);
+            ->with('tableUpdate', $tableUpdate ? $tableUpdate->updated_at : Carbon::now());
     }
 
     /**

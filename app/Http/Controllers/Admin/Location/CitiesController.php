@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin\Location;
 use Session;
 use Illuminate\Http\Request;
 use App\Models\Location\City;
+use App\Models\Location\Country;
+use App\Models\Location\Division;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
 
 class CitiesController extends Controller
 {
@@ -16,17 +19,20 @@ class CitiesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $country = Country::orderBy('country')->get();
+        $division = Division::orderBy('division')->get();
+        $tableUpdate = City::orderBy('updated_at', 'desc')->first();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        if ($division->count() == 0) {
+            Session::flash('info', 'You must have add division before attempting to create a city.');
+            return redirect()->back();
+        }
+
+        return view('admin.location.cities.index')
+            ->with('countries', $country)
+            ->with('divisions', $division)
+            ->with('cities', City::orderBy('country_id')->get())
+            ->with('tableUpdate', $tableUpdate ? $tableUpdate->updated_at : Carbon::now());
     }
 
     /**
@@ -37,29 +43,18 @@ class CitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'country' => 'required',
+            'division' => 'required',
+            'city' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function show(City $city)
-    {
-        //
-    }
+        $request['country_id'] = $request->country;
+        $request['division_id'] = $request->division;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Location\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(City $city)
-    {
-        //
+        City::create($request->all());
+        Session::flash('success', 'City create successfully');
+        return back();
     }
 
     /**
@@ -71,7 +66,18 @@ class CitiesController extends Controller
      */
     public function update(Request $request, City $city)
     {
-        //
+        $this->validate($request, [
+            'country' => 'required',
+            'division' => 'required',
+            'city' => 'required',
+        ]);
+
+        $request['country_id'] = $request->country;
+        $request['division_id'] = $request->division;
+
+        $city->update($request->all());
+        Session::flash('success', 'City update successfully');
+        return redirect()->route('admin.city.index');
     }
 
     /**
@@ -82,6 +88,9 @@ class CitiesController extends Controller
      */
     public function destroy(City $city)
     {
-        //
+        if ($city->delete()) {
+            Session::flash('success', 'City delete successfully');
+            return back();
+        }
     }
 }
