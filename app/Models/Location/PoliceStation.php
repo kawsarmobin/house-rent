@@ -22,4 +22,9 @@ class PoliceStation extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    public function villages()
+    {
+        return $this->hasMany(Village::class);
+    }
 }

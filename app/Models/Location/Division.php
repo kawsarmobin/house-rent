@@ -22,4 +22,9 @@ class Division extends Model
     {
         return $this->hasMany(PoliceStation::class);
     }
+
+    public function villages()
+    {
+        return $this->hasMany(Village::class);
+    }
 }
