@@ -139,9 +139,9 @@
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
-                        <div class="form-label-group">
+                        <div class="form-label-group" style="margin-left: -11px;">
                             <input type="file" name="images[]" multiple id="image">
-                            <label for="image" class="col col-form-label">Image</label>
+                            <label for="image" class="col col-form-label" style="margin-top: -8px;">Image</label>
                         </div>
                     </div>
                 </div>
@@ -157,7 +157,108 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-sm btn-primary float-right">Submit</button>
+            
+
+            <!-- Add house location -->
+            <div class="card">
+                <div class="card-header"> Location</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <select class="form-control select" name="country">
+                                        <option value="">Select Country</option>
+                                            @if ($countries)
+                                                @foreach ($countries as $country)
+                                                    <option value="{{ $country->id }}">{{ $country->country }}</option>
+                                                @endforeach
+                                            @endif
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <select class="form-control select" name="division">
+                                        <option value="">Select Division</option>
+                                            @if ($divisions)
+                                                @foreach ($divisions as $division)
+                                                    <option value="{{ $division->id }}">{{ $division->division }}</option>
+                                                @endforeach
+                                            @endif
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <select class="form-control select" name="city">
+                                        <option value="">Select City</option>
+                                            @if ($cities)
+                                                @foreach ($cities as $city)
+                                                    <option value="{{ $city->id }}">{{ $city->city }}</option>
+                                                @endforeach
+                                            @endif
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <select class="form-control select" name="police_station">
+                                        <option value="">Select Police Station</option>
+                                            @if ($police_stations)
+                                                @foreach ($police_stations as $police_station)
+                                                    <option value="{{ $police_station->id }}">{{ $police_station->police_station }}</option>
+                                                @endforeach
+                                            @endif
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <select class="form-control select" name="village">
+                                        <option value="">Select Village</option>
+                                            @if ($villages)
+                                                @foreach ($villages as $village)
+                                                    <option value="{{ $village->id }}">{{ $village->village }}</option>
+                                                @endforeach
+                                            @endif
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <select class="form-control select" name="word">
+                                        <option value="">Select Word</option>
+                                            @if ($words)
+                                                @foreach ($words as $word)
+                                                    <option value="{{ $word->id }}">{{ $word->word }}</option>
+                                                @endforeach
+                                            @endif
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-sm btn-primary float-right mt-3">Submit</button>
         </form>
     </div>
 </div>

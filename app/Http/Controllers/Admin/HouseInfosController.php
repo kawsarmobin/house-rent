@@ -11,6 +11,13 @@ use App\Http\Controllers\Controller;
 use App\Traits\MultipleImageUploadTraits;
 use App\Http\Requests\CreateHouseInfoRequest;
 use App\Http\Requests\UpdateHouseInfoRequest;
+use App\Models\Location\Country;
+use App\Models\Location\Division;
+use App\Models\Location\City;
+use App\Models\Location\PoliceStation;
+use App\Models\Location\Village;
+use App\Models\Location\Word;
+use App\Landlord;
 
 class HouseInfosController extends Controller
 {
@@ -35,7 +42,15 @@ class HouseInfosController extends Controller
     public function create()
     {
         return view('admin.house_infos.create')
-            ->with('landlords', User::where('user_role', 2)->get())
+            // fetch location data to all location model
+            ->with('countries', Country::orderBy('country')->get())
+            ->with('divisions', Division::orderBy('division')->get())
+            ->with('cities', City::orderBy('city')->get())
+            ->with('police_stations', PoliceStation::orderBy('police_station')->get())
+            ->with('villages', Village::orderBy('village')->get())
+            ->with('words', Word::orderBy('word')->get())
+            // fetch landlords to user const (*I will used landlord scope*)
+            ->with('landlords', Landlord::all())
             ->with('housetypes', HouseType::orderBy('name')->get());
     }
 

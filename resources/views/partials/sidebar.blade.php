@@ -45,6 +45,11 @@
             <a class="dropdown-item {{ Request::is('admin/word*') ? 'active' : '' }}" href="{{ route('admin.word.index') }}">Word / Union</a>
         </div>
     </li>
+    {{-- <li class="nav-item {{ Request::is('admin/house-location*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.house-location.index') }}">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>House Location</span></a>
+    </li> --}}
 
     {{-- default --}}
     <li class="nav-item dropdown">
