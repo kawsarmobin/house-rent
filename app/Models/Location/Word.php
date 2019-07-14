@@ -2,6 +2,7 @@
 
 namespace App\Models\Location;
 
+use App\Models\HouseLocation;
 use Illuminate\Database\Eloquent\Model;
 
 class Word extends Model
@@ -32,4 +33,10 @@ class Word extends Model
     {
         return $this->belongsTo(Village::class);
     }
+
+    public function houseLocations()
+    {
+        return $this->hasMany(HouseLocation::class);
+    }
+
 }

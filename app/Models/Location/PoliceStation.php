@@ -2,6 +2,7 @@
 
 namespace App\Models\Location;
 
+use App\Models\HouseLocation;
 use Illuminate\Database\Eloquent\Model;
 
 class PoliceStation extends Model
@@ -32,4 +33,10 @@ class PoliceStation extends Model
     {
         return $this->hasMany(Word::class);
     }
+
+    public function houseLocations()
+    {
+        return $this->hasMany(HouseLocation::class);
+    }
+
 }
