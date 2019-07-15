@@ -11,9 +11,9 @@
 </ol>
 
 <div class="card mb-3">
-    <div class="card-header">
+    <div class="card-header bg-dark text-white">
         <i class="fas fa-warehouse"></i> House Info
-        <a href="{{ route('admin.house-info.create') }}" class="btn btn-sm btn-outline-primary float-right"><i
+        <a href="{{ route('admin.house-info.create') }}" class="btn btn-sm btn-outline-light float-right"><i
             class="fa fa-plus"></i> Add New</a>
     </div>
     <div class="card-body">

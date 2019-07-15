@@ -2,11 +2,11 @@
 namespace App\Scopes;
 
 use App\User;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
-class LandlordScope implements Scope 
+class LandlordScope implements Scope
 {
     public function apply(Builder $builder, Model $model)
     {

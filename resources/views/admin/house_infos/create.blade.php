@@ -11,8 +11,8 @@
 </ol>
 
 <div class="card mx-auto">
-    <div class="card-header">Add House Info
-        <a href="{{ route('admin.house-info.index') }}" class="btn btn-sm btn-outline-primary float-right">
+    <div class="card-header bg-dark text-white">Add House Info
+        <a href="{{ route('admin.house-info.index') }}" class="btn btn-sm btn-outline-light float-right">
             <i class="fa fa-backspace"></i> Back
         </a>
     </div>
@@ -72,13 +72,14 @@
                 </div>
             </div>
 
+
             <!-- Adding house details information -->
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
                         <div class="form-label-group">
                             <input type="number" name="bed_room" id="bed_room" class="form-control"
-                                placeholder="No of bed rooms" value="{{ old('bed_room') }}" min="1" max="15">
+                                placeholder="No of bed rooms" value="{{ old('bed_room') }}" min="1">
                             <label for="bed_room" class="col col-form-label">No of bed rooms</label>
                         </div>
                     </div>
@@ -87,7 +88,7 @@
                     <div class="form-group">
                         <div class="form-label-group">
                             <input type="number" name="wash_room" id="wash_room" class="form-control"
-                                placeholder="No of wash rooms" value="{{ old('wash_room') }}" min="1" max="7">
+                                placeholder="No of wash rooms" value="{{ old('wash_room') }}" min="1">
                             <label for="wash_room" class="col col-form-label">No of wash rooms</label>
                         </div>
                     </div>
@@ -99,7 +100,7 @@
                     <div class="form-group">
                         <div class="form-label-group">
                             <input type="number" name="porches" id="porches" class="form-control"
-                                placeholder="No of porches" value="{{ old('porches') }}" min="1" max="7">
+                                placeholder="No of porches" value="{{ old('porches') }}" min="1">
                             <label for="porches" class="col col-form-label">No of porches</label>
                         </div>
                     </div>
@@ -108,7 +109,7 @@
                     <div class="form-group">
                         <div class="form-label-group">
                             <input type="number" name="drawing_room" id="drawing_room" class="form-control"
-                                placeholder="No of drawing rooms" value="{{ old('drawing_room') }}" min="1" max="10">
+                                placeholder="No of drawing rooms" value="{{ old('drawing_room') }}" min="1">
                             <label for="drawing_room" class="col col-form-label">No of drawing rooms</label>
                         </div>
                     </div>
@@ -120,7 +121,7 @@
                     <div class="form-group">
                         <div class="form-label-group">
                             <input type="number" name="dining_room" id="dining_room" class="form-control"
-                                placeholder="No of dining rooms" value="{{ old('dining_room') }}" min="1" max="10">
+                                placeholder="No of dining rooms" value="{{ old('dining_room') }}" min="1">
                             <label for="dining_room" class="col col-form-label">No of dining rooms</label>
                         </div>
                     </div>
@@ -129,7 +130,7 @@
                     <div class="form-group">
                         <div class="form-label-group">
                             <input type="number" name="store_room" id="store_room" class="form-control"
-                                placeholder="No of store rooms" value="{{ old('store_room') }}" min="1" max="10">
+                                placeholder="No of store rooms" value="{{ old('store_room') }}" min="1">
                             <label for="store_room" class="col col-form-label">No of store rooms</label>
                         </div>
                     </div>
@@ -149,19 +150,18 @@
                     <div class="form-group">
                         <div class="form-label-group">
                             <input type="number" name="rent_amount" id="rent_amount" class="form-control"
-                                placeholder="No of rent amount" value="{{ old('rent_amount') }}" min="500">
+                                placeholder="No of rent amount" value="{{ old('rent_amount') }}">
                             <label for="rent_amount" class="col col-form-label"><i class="fb-taka"></i> Rent
                                 amount</label>
                         </div>
                     </div>
                 </div>
             </div>
-
             
 
             <!-- Add house location -->
             <div class="card">
-                <div class="card-header"> Location</div>
+                <div class="card-header bg-dark text-white"> Location</div>
                 <div class="card-body">
                     <div class="form-row">
                         <div class="col">
@@ -258,7 +258,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-sm btn-primary float-right mt-3">Submit</button>
+            <button type="submit" class="btn btn-sm btn-outline-primary float-right mt-3">Submit</button>
         </form>
     </div>
 </div>

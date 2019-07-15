@@ -2,6 +2,13 @@
 
 @section('content')
 
+<style>
+    .table-less-p tbody tr th,
+    .table-less-p tbody tr td {
+        padding: 5px !important;
+    }
+</style>
+
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
@@ -11,11 +18,11 @@
 </ol>
 
 <div class="card mx-auto">
-    <div class="card-header">Show All House Information
-        <a href="{{ route('admin.house-info.index') }}" class="btn btn-sm btn-outline-primary float-right">
+    <div class="card-header bg-dark text-white">Show All House Information
+        <a href="{{ route('admin.house-info.index') }}" class="btn btn-sm btn-outline-light float-right">
             <i class="fa fa-backspace"></i> Back
         </a>
-        <a href="{{ route('admin.house-info.create') }}" class="btn btn-sm btn-outline-primary float-right mr-1">
+        <a href="{{ route('admin.house-info.create') }}" class="btn btn-sm btn-outline-light float-right mr-1">
             <i class="fa fa-plus"></i> Add New
         </a>
     </div>
@@ -23,7 +30,7 @@
 
         <div class="row">
             <!-- house information -->
-            <div class="col-md-6">
+            <div class="col-md-6 mb-3">
                 <div class="card">
                     <div class="card-body">
                         <table class="table table-borderless">
@@ -58,49 +65,107 @@
                     </div>
                 </div>
             </div>
+
+
             <!-- house details -->
-            <div class="col-md-6">
+            <div class="col-md-6 mb-3">
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-borderless">
+                        <table class="table table-borderless table-less-p">
                             <tbody>
                                 <tr>
-                                    <th>bed_room</th>
+                                    <th>Bed Room</th>
                                     <td>:</td>
                                     <td>{{ $houseInfo->houseDetails->bed_room }}</td>
                                 </tr>
                                 <tr>
-                                    <th>wash_room</th>
+                                    <th>Wash Room</th>
                                     <td>:</td>
                                     <td>{{ $houseInfo->houseDetails->wash_room }}</td>
                                 </tr>
                                 <tr>
-                                    <th>porches</th>
+                                    <th>Porches</th>
                                     <td>:</td>
                                     <td>{{ $houseInfo->houseDetails->porches }}</td>
                                 </tr>
                                 <tr>
-                                    <th>drawing_room</th>
+                                    <th>Drawing Room</th>
                                     <td>:</td>
                                     <td>{{ $houseInfo->houseDetails->drawing_room }}</td>
                                 </tr>
                                 <tr>
-                                    <th>dining_room</th>
+                                    <th>Dining Room</th>
                                     <td>:</td>
                                     <td>{{ $houseInfo->houseDetails->dining_room }}</td>
                                 </tr>
                                 <tr>
-                                    <th>store_room</th>
+                                    <th>Store Room</th>
                                     <td>:</td>
                                     <td>{{ $houseInfo->houseDetails->store_room }}</td>
                                 </tr>
                                 <tr>
-                                    <th>rent_amount</th>
+                                    <th>Rent Amount</th>
                                     <td>:</td>
                                     <td><i class="fb-taka"></i> {{ $houseInfo->houseDetails->rent_amount }}</td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- show house location -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-dark text-white"> Location</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6" style="border-right: 1px solid silver">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <th>Country</th>
+                                            <td>:</td>
+                                            <td>{{ $houseInfo->houseLocation->country->country }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>City</th>
+                                            <td>:</td>
+                                            <td>{{ $houseInfo->houseLocation->city->city }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Village</th>
+                                            <td>:</td>
+                                            <td>{{ $houseInfo->houseLocation->village->village }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table class="table table-borderless">
+                                    <tbody>
+
+                                        <tr>
+                                            <th>Division</th>
+                                            <td>:</td>
+                                            <td>{{ $houseInfo->houseLocation->division->division }}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Police Station</th>
+                                            <td>:</td>
+                                            <td>{{ $houseInfo->houseLocation->policeStation->police_station }}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Word</th>
+                                            <td>:</td>
+                                            <td>{{ $houseInfo->houseLocation->word->word }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

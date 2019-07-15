@@ -35,6 +35,13 @@ class UpdateHouseInfoRequest extends FormRequest
             'dining_room' => 'required',
             'store_room' => 'required',
             'rent_amount' => 'required',
+
+            'country' => 'required',
+            'division' => 'required',
+            'city' => 'required',
+            'police_station' => 'required',
+            'village' => 'required',
+            'word' => 'required',
         ];
     }
 }

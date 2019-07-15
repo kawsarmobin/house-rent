@@ -45,9 +45,9 @@ class HouseInfo extends Model
         return $this->hasMany(HouseImage::class, 'house_id', 'id');
     }
 
-    public function houseLocations()
+    public function houseLocation()
     {
-        return $this->hasMany(HouseLocation::class);
+        return $this->hasOne(HouseLocation::class, 'house_id', 'id');
     }
 
     public function getApprovalAttribute()
